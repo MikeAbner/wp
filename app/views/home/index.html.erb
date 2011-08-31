@@ -1,0 +1,14 @@
+<div id="title">
+  <h1>The Wanderphiles</h1>
+</div>
+<div id="fb-login">
+  <fb:login-button perms="publish_stream">
+    Login with Facebook
+  </fb:login-button>
+</div>
+<%= render 'common/facebook' %>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    WP.initHomePage();
+  });
+</script>
