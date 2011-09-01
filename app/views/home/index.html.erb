@@ -1,11 +1,18 @@
-<div id="title">
-  <h1>The Wanderphiles</h1>
-</div>
-<div id="fb-login">
-  <fb:login-button perms="publish_stream">
-    Login with Facebook
-  </fb:login-button>
-</div>
+<header>
+  <%= render 'common/title_bar' %>
+</header>
+<section>
+  <div id="fb-login">
+    <fb:login-button perms="publish_stream">
+      Login with Facebook
+    </fb:login-button>
+  </div>
+  <div id="my-activities">
+    <a href='#'>My Activities</a>
+  </div>
+</section>
+<footer>
+</footer>
 <%= render 'common/facebook' %>
 <script type='text/javascript'>
   $(document).ready(function() {

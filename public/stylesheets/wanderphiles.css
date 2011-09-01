@@ -1,3 +1,16 @@
-#container{ width: 640px; margin: 0 auto; background-color: #ccc; padding: 10px 0 20px 0; }
-#title{ text-align: center; }
-#fb-login{ text-align: center; }
+/* site wide */
+#container{ width: 640px; margin: 0 auto; background-color: #ccc; padding: 0px 0 0px 0; }
+
+/* title bar */
+#title{ width: 100%; height: 40px; text-align: center; }
+
+/* action bar */
+#action-bar{ width: 100%; height: 50px; background-color: #eee; margin: 0; padding: 0; }
+.action-item{ width: 160px; float: left; text-align: center; margin: 0; padding: 0; }
+.action-selected{ background-color: #0ff;}
+
+/* home page */
+#fb-login{ text-align: center; display: none; }
+#my-activities{ text-align: center; display: none; }
+
+/* app */
