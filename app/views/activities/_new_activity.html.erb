@@ -1,0 +1,28 @@
+<div id="new-activity">
+  <%= form_for @activity, :html => { :id => 'activity-form' } do |f| %>
+    <p>
+      <%= f.label :title %><br/>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :date %><br/>
+      <input type='date' id='occurred_on'/>
+      <%= f.hidden_field :occurred_on %>
+    </p>
+    <!--<p>
+      <%#= f.label :friends %><br/>
+      <%#= f.hidden_field :friends %>
+    </p>-->
+    <p>
+      <%= f.label :description %><br/>
+      <%= f.text_area :description %>
+    </p>
+    <p>
+      <%= f.label :post_to_facebook %>&nbsp;
+      <%= f.check_box :post_to_facebook %>
+    </p>
+    <p>
+      <a href='#' id='save-activity-btn'>Save</a>
+    </p>
+  <% end %>
+</div>

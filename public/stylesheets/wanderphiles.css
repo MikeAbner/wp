@@ -14,3 +14,5 @@
 #my-activities{ text-align: center; display: none; }
 
 /* app */
+#activities header #menu-bar{ width: 160px; background-color: orange; }
+#activities #new-activity{ display: none; }
