@@ -1,8 +1,15 @@
 class ActivitiesController < ApplicationController
+  
+  before_filter :authorize_user, :except => :show
+  
   def index
     @activities_selected = 'action-selected'
     @activities = Activity.desc( :occurred_on )
     @activity = Activity.new
+  end
+  
+  def show
+    @activity = Activity.find( params[:id] )
   end
   
   def create

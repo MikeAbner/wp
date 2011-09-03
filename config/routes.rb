@@ -1,4 +1,4 @@
-Wf::Application.routes.draw do
+Wp::Application.routes.draw do
   root :to => 'home#index'
   
   match 'login'   => 'sessions#create',   :as => :login

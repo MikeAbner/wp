@@ -2,12 +2,10 @@ WP = {
 	
 	initHomePage: function() {
 		console.log('initHomePage');
-		//WP.subscribeToAuthResponseChangeEvent();
-		//WP.subscribeToStatusChangeEvent();
 		
 		FB.getLoginStatus(function(response) {
 			console.log('getLoginStatus');
-	  	if (response.session) {
+	  	if ( response.session ) {
 				console.log('logged in');
 				$('#my-activities').show();
 	  	}
@@ -16,20 +14,6 @@ WP = {
 				$('#fb-login').show();
 				WP.subscribeToLoginEvent();
 	  	}
-		});
-	},
-	
-	subscribeToAuthResponseChangeEvent: function() {
-		console.log('one');
-		FB.Event.subscribe('auth.authResponseChange', function( response ) {
-			console.log(response);
-		});
-	},
-	
-	subscribeToStatusChangeEvent: function() {
-		console.log('two');
-		FB.Event.subscribe('auth.statusChange', function( response ) {
-			console.log(response);
 		});
 	},
 	
