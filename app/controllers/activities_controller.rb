@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   
   before_filter :authorize_user, :except => :show
+  before_filter :parse_with_field_to_json, :only => :create
   
   def index
     @activities_selected = 'action-selected'
@@ -21,5 +22,9 @@ class ActivitiesController < ApplicationController
     else
       render :json => { :status => :unprocessable_entity }, :status => :unprocessable_entity
     end
+  end
+  
+  def parse_with_field_to_json
+    params[:activity][:with] = JSON.parse( params[:activity][:with] )
   end
 end

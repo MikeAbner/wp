@@ -30,7 +30,6 @@ body { background: url(../images/blue-bg.jpg); }
 #menu-bar{ width: 140px; height: 25px; background-color: orange; text-align: center; padding-top: 10px; }
 #menu-bar a { text-decoration: none; }
 
-#activities #new-activity{ display: none; }
 .activity { margin: 0 10px 0 10px; }
 .activity .title { width: 100%; margin: 25px 0 0 0; overflow: auto; }
 .activity .title .left { float: left; width: 90%; font-size: 18pt; font-weight: bold; }
@@ -39,11 +38,19 @@ body { background: url(../images/blue-bg.jpg); }
 #activities .with { margin: 4px 0 0px 5px; overflow: auto; }
 #activities .with .left { float: left; margin: 4px 5px 0 5px; }
 #activities .with .right { float: left; }
-#activities .mini-profile { float: left; margin: 0 10px 0 0; }
 #activities .with .left { float: left; margin: 4px 5px 0 5px; }
 #activities .with .right { float: left; }
-#activities .profile-pic img { width: 50px; height: 50px; }
-#activities .profile-name { padding: 20px 0 0 0; }
-#activities .profile-name a { text-decoration: none; }
-#activities .description { margin: 0 10px 8px 10px; }
 #activities .actions { margin: 10px 10px 0 10px; text-align: right; }
+
+#activities #new-activity{ display: none; }
+#activities #friend-picker-container { position: relative; width: 500px; height: 400px; top: -550px; left: 25px; padding: 10px 10px 10px 10px; background-color: #eee; z-index: 900; display: none; border: 3px solid #888; }
+#chosen-friends { width: 100%; overflow: auto; }
+#chosen-friends .left { float: left; margin: 4px 5px 0 5px; }
+#chosen-friends .right { float: left; }
+
+/* facebook mini profile */
+.mini-profile { float: left; margin: 0 10px 0 0; }
+.profile-pic img { width: 50px; height: 50px; }
+.profile-name { padding: 20px 0 0 0; }
+.profile-name a { text-decoration: none; }
+.description { margin: 0 10px 8px 10px; }

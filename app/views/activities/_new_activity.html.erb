@@ -9,10 +9,11 @@
       <input type='date' id='occurred_on'/>
       <%= f.hidden_field :occurred_on %>
     </p>
-    <!--<p>
-      <%#= f.label :friends %><br/>
-      <%#= f.hidden_field :friends %>
-    </p>-->
+    <p>
+      <%= f.label :with %>&nbsp;&nbsp;&nbsp;<a href='#' id='open-friend-picker-btn'>Choose Friends</a><br/>
+      <%= f.hidden_field :with %>
+    </p>
+    <div id='chosen-friends'></div>
     <p>
       <%= f.label :description %><br/>
       <%= f.text_area :description %>
@@ -26,4 +27,9 @@
       <a href='#' id='cancel-btn'>Cancel</a>
     </p>
   <% end %>
+  <div id='friend-picker-container' class='rcw'>
+    <div id="friend-picker"></div>
+    <a href='#' id='choose-friends-btn'>Ok</a>
+    <a href='#' id='cancel-friends-btn'>Cancel</a>
+  </div>
 </div>

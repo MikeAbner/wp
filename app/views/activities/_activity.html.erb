@@ -9,32 +9,27 @@
     <br style='clear:both;'/>
   </div>
   <p class='occurred_on'><b>on</b> <%= activity.occurred_on.to_s( :us_short_date ) %></p>
-  <div class='with'>
-    <div class='with left'>
-      <b>with</b>
-    </div>
-    <div class='right'>
-      <div class='mini-profile'>
-        <div class='profile-pic left'>
-          <img src=''/>
-        </div>
-        <div class='profile-name right'>
-          <a href='#'>Liz Kroboth</a>
-        </div>
-        <br style='clear:both;'/>
+  <% if !activity.with.nil? %>
+    <div class='with'>
+      <div class='with left'>
+        <b>with</b>
       </div>
-      <div class='mini-profile'>
-        <div class='profile-pic left'>
-          <img src=''/>
-        </div>
-        <div class='profile-name right'>
-          <a href='#'>Dragon Cat</a>
-        </div>
-        <br style='clear:both;'/>
+      <div class='right'>
+        <% activity.with.each do |friend| %>
+          <div class='mini-profile'>
+            <div class='profile-pic left'>
+              <img src='//graph.facebook.com/<%= friend['id'] %>/picture' />
+            </div>
+            <div class='profile-name right'>
+              <a href='#'><%= friend['name'] %></a>
+            </div>
+            <br style='clear:both;'/>
+          </div>
+        <% end %>
       </div>
     </div>
-  </div>
-  <br style='clear:both;'/>
+    <br style='clear:both;'/>
+  <% end %>
   <%= simple_format( activity.description, :class => 'description' ) %>
   <p class='actions'>
     Edit&nbsp;&nbsp;&nbsp;

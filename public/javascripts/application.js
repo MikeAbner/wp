@@ -62,6 +62,24 @@ WP = {
 			WP.cancelNewActivity();
 			return false;
 		});
+		$('#open-friend-picker-btn').click(function() {
+			$('#friend-picker-container').show();
+			$('#friend-picker').jfmfs({
+				pre_selected_friends: $('#activity_with').val().split(',')
+			});
+			$("#friend-picker").bind("jfmfs.selection.changed", function(e, data) { 
+				WP.drawFriends( data );
+			});
+			return false;
+		});
+		$('#choose-friends-btn').live('click', function() {
+			WP.chooseFriends();
+			return false;
+		});
+		$('#cancel-friends-btn').live('click', function() {
+			$('#friend-picker-container').hide();
+			return false;
+		})
 	},
 	
 	saveNewActivity: function() {
@@ -89,5 +107,28 @@ WP = {
 		}
 	
 		return false;
+	},
+	
+	drawFriends: function( friends ) {
+		chosenFriends = $('#chosen-friends').empty();
+		$.each( friends, function( i, val ) {
+			console.log(val)
+			friend = $('#friend-picker #' + val['id'])
+			html = "<div class='mini-profile'>";
+			html += "<div class='profile-pic left'>";
+			html += "<img src='" + friend.find('img').attr('src') + "'/>";
+			html += "</div>";
+			html += "<div class='profile-name right'>";
+			html += "<a href='#'>" + val['name'] + "</a>";
+			html += "</div>";
+			html += "<br style='clear:both;'/>";
+			html += "</div>";
+			chosenFriends.append( html );
+			$('#activity_with').val( JSON.stringify( friends ) );
+		});
+	},
+	
+	chooseFriends: function() {
+		$('#friend-picker-container').hide();
 	}
 }
