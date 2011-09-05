@@ -58,6 +58,10 @@ WP = {
 			WP.saveNewActivity();
 			return false;
 		});
+		$('#cancel-btn').click(function() {
+			WP.cancelNewActivity();
+			return false;
+		});
 	},
 	
 	saveNewActivity: function() {
@@ -75,5 +79,15 @@ WP = {
 				alert("Oops! Looks like we had an error saving your activity. Please try again.");
 			}
 		});
+	},
+	
+	cancelNewActivity: function() {
+		answer = confirm('Are you sure you want to cancel?');
+		
+		if (answer) {
+			$('#new-activity').slideUp();
+		}
+	
+		return false;
 	}
 }

@@ -1,9 +1,44 @@
-<article id='activity_1' style='<%= @style %>'>
-  <h2><%= activity.title %></h2>
-  <p>on <%= activity.occurred_on %></p>
-  <p>with Liz Kroboth</p>
-  <%= simple_format( activity.description ) %>
-  <p>Edit&nbsp;Delete</p>
-  <p>Like</p>
-  <p>Comments</p>
+<article id='activity_<%= activity.id %>' class='activity' style='<%= @style %>'>
+  <div class='title'>
+    <div class='left'>
+      <%= activity.title %>
+    </div>
+    <div class='right'>
+      Like
+    </div>
+    <br style='clear:both;'/>
+  </div>
+  <p class='occurred_on'><b>on</b> <%= activity.occurred_on.to_s( :us_short_date ) %></p>
+  <div class='with'>
+    <div class='with left'>
+      <b>with</b>
+    </div>
+    <div class='right'>
+      <div class='mini-profile'>
+        <div class='profile-pic left'>
+          <img src=''/>
+        </div>
+        <div class='profile-name right'>
+          <a href='#'>Liz Kroboth</a>
+        </div>
+        <br style='clear:both;'/>
+      </div>
+      <div class='mini-profile'>
+        <div class='profile-pic left'>
+          <img src=''/>
+        </div>
+        <div class='profile-name right'>
+          <a href='#'>Dragon Cat</a>
+        </div>
+        <br style='clear:both;'/>
+      </div>
+    </div>
+  </div>
+  <br style='clear:both;'/>
+  <%= simple_format( activity.description, :class => 'description' ) %>
+  <p class='actions'>
+    Edit&nbsp;&nbsp;&nbsp;
+    Delete
+  </p>
+  <p class='comments'>Comments</p>
 </article>

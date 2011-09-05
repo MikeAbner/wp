@@ -1,12 +1,25 @@
 /* site wide */
-#container{ width: 640px; margin: 0 auto; background-color: #ccc; padding: 0px 0 0px 0; }
+body { background: url(../images/blue-bg.jpg); }
+#container{ width: 560px; margin: 0 auto; background-color: #eee; padding: 0px 0 0px 0; border: 8px solid rgba( 221, 221, 221, 0.1); }
+/* rounded corners wide (top wide/bottom wide) */
+.rcw{ border-radius: 16px; }
+.rctw{ border-top-left-radius: 16px; border-top-right-radius: 16px; }
+.rcbw{ border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+/* rounded corners narrow (top narrow/bottom narrow) */
+.rcn{ border-radius: 8px; }
+.rctn{ border-top-left-radius: 8px; border-top-right-radius: 8px; }
+.rcbn{ border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+
+
+
 
 /* title bar */
-#title{ width: 100%; height: 40px; text-align: center; }
+#title{ width: 100%; height: 40px; text-align: center; padding-top: 150px; background: url(../images/test-bg.png); }
+#title h1 { margin: 0; padding: 0; }
 
 /* action bar */
-#action-bar{ width: 100%; height: 50px; background-color: #eee; margin: 0; padding: 0; }
-.action-item{ width: 160px; float: left; text-align: center; margin: 0; padding: 0; }
+#action-bar{ width: 100%; height: 75px; background-color: #eee; margin: 0; padding: 0; }
+.action-item{ width: 140px; float: left; text-align: center; margin: 0; padding: 60px 0 0 0; cursor: pointer; background-color: #ccc;}
 .action-selected{ background-color: #0ff;}
 
 /* home page */
@@ -14,5 +27,23 @@
 #my-activities{ text-align: center; display: none; }
 
 /* app */
-#activities header #menu-bar{ width: 160px; background-color: orange; }
+#menu-bar{ width: 140px; height: 25px; background-color: orange; text-align: center; padding-top: 10px; }
+#menu-bar a { text-decoration: none; }
+
 #activities #new-activity{ display: none; }
+.activity { margin: 0 10px 0 10px; }
+.activity .title { width: 100%; margin: 25px 0 0 0; overflow: auto; }
+.activity .title .left { float: left; width: 90%; font-size: 18pt; font-weight: bold; }
+.activity .title .right { float: right; margin: 0 10px 0 0; }
+#activities .occurred_on { margin: 15px 0 15px 10px; }
+#activities .with { margin: 4px 0 0px 5px; overflow: auto; }
+#activities .with .left { float: left; margin: 4px 5px 0 5px; }
+#activities .with .right { float: left; }
+#activities .mini-profile { float: left; margin: 0 10px 0 0; }
+#activities .with .left { float: left; margin: 4px 5px 0 5px; }
+#activities .with .right { float: left; }
+#activities .profile-pic img { width: 50px; height: 50px; }
+#activities .profile-name { padding: 20px 0 0 0; }
+#activities .profile-name a { text-decoration: none; }
+#activities .description { margin: 0 10px 8px 10px; }
+#activities .actions { margin: 10px 10px 0 10px; text-align: right; }

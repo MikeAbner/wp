@@ -30,7 +30,6 @@ describe UserService do
       user = UserService.find_or_create_by_facebook_id( fb_user.identifier, fb_user.access_token )
       user = JSON.parse( user )
       
-      
       u = nil
       expect {
         u = UserService.find_or_create_by_facebook_id( user['fb_id'], user['fb_token'] )
@@ -45,6 +44,25 @@ describe UserService do
       u['fb_token'].should    == user['fb_token']
       u['first_name'].should  == user['first_name']
       u['last_name'].should   == user['last_name']
+    end
+    it 'should fail if no first name is returned from facebook'
+    it 'should fail if no last name is returned from facebook'
+  end
+  
+  describe 'login!' do
+    before(:each) do
+      @app = FbGraph::Application.new( FB_APP_ID, :secret => FB_SECRET )
+      @app.test_users.collect( &:destroy )
+      @fb_user = @app.test_user!(:installed => true, :permissions => :read_stream)
+      @user = UserService.find_or_create_by_facebook_id( fb_user.identifier, fb_user.access_token )
+      @user = JSON.parse( user )
+    end
+    it 'should set the last_logged_in_at field to now' do
+      @user.last_logged_in_at.should be_blank
+      
+      UserService.login!( @user['_id'] )
+      
+      @user.last_logged_in_at.should_not be_blank
     end
   end
 end

@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
     fbid  = params[:uid]
     at    = params[:access_token]
     user  = UserService.find_or_create_by_facebook_id( fbid, at )
-    
     user = JSON.parse( user )
+    UserService.login!( user['_id'] )
     
     if user['_id']
       session['user_id'] = user['_id']

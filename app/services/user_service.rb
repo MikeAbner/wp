@@ -5,6 +5,12 @@ class UserService
     user.to_json
   end
   
+  def self.login! id
+    user = User.find( id )
+    user.last_logged_in_at = DateTime.now
+    user.save
+  end
+  
   def self.find_or_create_by_facebook_id uid, access_token
     user = User.where( :fb_id => uid ).one
 
