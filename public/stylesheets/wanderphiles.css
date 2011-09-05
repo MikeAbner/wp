@@ -32,7 +32,7 @@ body { background: url(../images/blue-bg.jpg); }
 
 .activity { margin: 0 10px 0 10px; }
 .activity .title { width: 100%; margin: 25px 0 0 0; overflow: auto; }
-.activity .title .left { float: left; width: 90%; font-size: 18pt; font-weight: bold; }
+.activity .title .left { float: left; width: 89%; padding: 15px 0 0 0; font-size: 18pt; font-weight: bold; }
 .activity .title .right { float: right; margin: 0 10px 0 0; }
 #activities .occurred_on { margin: 15px 0 15px 10px; }
 #activities .with { margin: 4px 0 0px 5px; overflow: auto; }

@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   
   def index
     @activities_selected = 'action-selected'
-    @activities = Activity.desc( :occurred_on )
+    @activities = Activity.desc( :occurred_on ).limit(5)
     @activity = Activity.new
   end
   

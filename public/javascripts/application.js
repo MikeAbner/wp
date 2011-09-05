@@ -43,6 +43,17 @@ WP = {
 	},
 	
 	initActivitiesPage: function() {
+		FB.getLoginStatus(function(response) {
+			console.log('getLoginStatus');
+	  	if ( response.session ) {
+				//logged in
+	  	}
+			else {
+				console.log('not logged in');
+				window.location = '/';
+	  	}
+		});
+		
 		$("#occurred_on").dateinput({
 			change: function() {
 				var isoDate = this.getValue( 'yyyy-mm-dd' );

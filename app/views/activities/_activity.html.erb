@@ -4,7 +4,7 @@
       <%= activity.title %>
     </div>
     <div class='right'>
-      Like
+      <iframe src="http://www.facebook.com/plugins/like.php?app_id=113008035468847&amp;href=wanderphiles.com%2Factivity%2Fzxcv&amp;send=false&amp;layout=box_count&amp;width=50&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:60px;" allowTransparency="true"></iframe>
     </div>
     <br style='clear:both;'/>
   </div>
@@ -21,7 +21,7 @@
               <img src='//graph.facebook.com/<%= friend['id'] %>/picture' />
             </div>
             <div class='profile-name right'>
-              <a href='#'><%= friend['name'] %></a>
+              <a href='//www.facebook.com/<%= friend['id'] %>'><%= friend['name'] %></a>
             </div>
             <br style='clear:both;'/>
           </div>
@@ -35,5 +35,5 @@
     Edit&nbsp;&nbsp;&nbsp;
     Delete
   </p>
-  <p class='comments'>Comments</p>
+  <p class='comments'><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="wanderphiles.com/activities/<%= activity.id %>" num_posts="5" width="500"></fb:comments></p>
 </article>
