@@ -4,5 +4,7 @@ Wp::Application.routes.draw do
   match 'login'   => 'sessions#create',   :as => :login
   match 'logout'  => 'sessions#destroy',  :as => :logout
   
-  resources :activities
+  resources :activities do
+    get :more, :on => :collection
+  end
 end

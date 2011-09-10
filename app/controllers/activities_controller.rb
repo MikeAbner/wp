@@ -1,16 +1,22 @@
 class ActivitiesController < ApplicationController
   
-  before_filter :authorize_user, :except => :show
+  #before_filter :authorize_user, :except => :show
   before_filter :parse_with_field_to_json, :only => :create
   
   def index
     @activities_selected = 'action-selected'
-    @activities = Activity.desc( :occurred_on ).limit(5)
+    @activities = Activity.desc( :when, :created_at ).limit( 3 ).all
     @activity = Activity.new
   end
   
   def show
     @activity = Activity.find( params[:id] )
+  end
+  
+  def more
+    offset = params[:offset].to_i
+    @activities = Activity.desc( :when, :created_at ).offset( offset ).limit( 3 ).all
+    render :layout => nil
   end
   
   def create
@@ -24,7 +30,23 @@ class ActivitiesController < ApplicationController
     end
   end
   
+  def destroy
+    @activity = Activity.find( params[:id] )
+    if @activity.destroy
+      render :json => { :status => :ok }, :status => :ok
+    else
+      render :json => { :status => :unprocessable_entity }, :status => :unprocessable_entity
+    end
+
+  end
+  
+private
+  
   def parse_with_field_to_json
-    params[:activity][:with] = JSON.parse( params[:activity][:with] )
+    if !( with = params[:activity][:with] ).blank?
+      params[:activity][:with] = JSON.parse( with )
+    else
+      params[:activity][:with] = []
+    end
   end
 end

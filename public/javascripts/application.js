@@ -54,25 +54,32 @@ WP = {
 	  	}
 		});
 		
-		$("#occurred_on").dateinput({
+		$("#when").dateinput({
 			change: function() {
 				var isoDate = this.getValue( 'yyyy-mm-dd' );
-				$("#activity_occurred_on").val( isoDate );
+				$("#activity_when").val( isoDate );
 			}
 		});
 		
+		// ADD ACTIVITY
 		$('#add-activity-btn').click(function() {
-			$('#new-activity').slideDown();
+			$('#new-activity').slideDown('slow', function() { $('#activity_what').focus(); } );
 			return false;
 		});
+		
+		// SAVE ACTIVITY
 		$('#save-activity-btn').click(function() {
 			WP.saveNewActivity();
 			return false;
 		});
+		
+		//CANCEL NEW ACTIVITY
 		$('#cancel-btn').click(function() {
 			WP.cancelNewActivity();
 			return false;
 		});
+		
+		//OPEN FRIEND PICKER
 		$('#open-friend-picker-btn').click(function() {
 			$('#friend-picker-container').show();
 			$('#friend-picker').jfmfs({
@@ -83,14 +90,30 @@ WP = {
 			});
 			return false;
 		});
+		
+		//CHOOSE FRIENDS
 		$('#choose-friends-btn').live('click', function() {
 			WP.chooseFriends();
 			return false;
 		});
+		
+		//CANCEL FRIENDS
 		$('#cancel-friends-btn').live('click', function() {
 			$('#friend-picker-container').hide();
 			return false;
-		})
+		});
+		
+		//DELETE ACTIVITY
+		$('.delete-activity').live('click', function() {
+			WP.deleteActivity( $.trim( $(this).parent().parent().find('.activity-id').text() ) );
+			return false;
+		});
+		
+		//SHOW MORE ACTIVITIES
+		$('#show-more').click(function() {
+			WP.showMoreActivities();
+			return false;
+		});
 	},
 	
 	saveNewActivity: function() {
@@ -99,9 +122,11 @@ WP = {
 			url: '/activities',
 			data: $('#activity-form').serialize(),
 			success: function( data, status, xhr ) {
-				$('#new-activity').slideUp();
 				$('#activity-list').prepend( data );
-				$('#activity-list :eq(0)').slideDown();
+				$('#new-activity').slideUp('slow', function() {
+					setTimeout(function() { $('#activity-list :eq(0)').slideDown('slow'); }, 500);
+					WP.clearNewActivityForm();
+				});
 			},
 			error: function( xhr, status, error ) {
 				console.log( "Error saving new activity! status: " + status + " error: " + error );
@@ -114,10 +139,21 @@ WP = {
 		answer = confirm('Are you sure you want to cancel?');
 		
 		if (answer) {
-			$('#new-activity').slideUp();
+			$('#new-activity').slideUp('slow');
 		}
 	
 		return false;
+	},
+	
+	clearNewActivityForm: function() {
+		$('#activity_what').val('');
+		$('#when').val('');
+		$('#activity_when').val('');
+		$('#activity_at').val('');
+		$('#activity_in').val('');
+		$('#chosen-friends').html('');
+		$('#activity_with').val('');
+		$('#activity_desc').val('');
 	},
 	
 	drawFriends: function( friends ) {
@@ -141,5 +177,47 @@ WP = {
 	
 	chooseFriends: function() {
 		$('#friend-picker-container').hide();
+	},
+	
+	deleteActivity: function( id ) {
+		answer = confirm('Are you sure you want to delete this activity?');
+		
+		if (answer) {
+			$.ajax({
+			  type: 'POST',
+			  url: '/activities/' + id,
+			  data: '_method=delete&authenticity_token=' + $('input[name="authenticity_token"]').val(),
+				headers: {
+					'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+				},
+			  success: function( data, status, xhr ) {
+					article = $('#activity_' + id)[0];
+					article.slideUp('slow', function() {
+						$(this).remove();
+					});
+				},
+				error: function( xhr, status, error ) {
+					alert('Uh oh! Looks like something broke.');
+				}
+			});
+		}
+	},
+	
+	showMoreActivities: function() {
+		offset = $('article').length;
+		
+		$.ajax({
+			type: 'GET',
+			url: '/activities/more?offset=' + offset,
+			headers: {
+				'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+			},
+		  success: function( data, status, xhr ) {
+				$('#activity-list').append( data );
+			},
+			error: function( xhr, status, error ) {
+				alert('Uh oh! Looks like something broke.');
+			}
+		});
 	}
 }

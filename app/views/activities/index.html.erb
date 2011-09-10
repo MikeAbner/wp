@@ -8,7 +8,10 @@
   </header>
   <%= render 'new_activity' %>
   <div id='activity-list'>
-    <%= render :partial => 'activity', :collection => @activities %>
+    <%= render 'activities' %>
+  </div>
+  <div id='more'>
+    <a href='#' id='show-more'>More</a>
   </div>
 </section>
 <footer>
