@@ -7,7 +7,22 @@ WP = {
 			console.log('getLoginStatus');
 	  	if ( response.session ) {
 				console.log('logged in');
-				$('#my-activities').show();
+				$.ajax({
+			  	type: 'POST',
+				  url: '/login',
+				  data: 'uid=' + response.session.uid + '&access_token=' + response.session.access_token,
+					headers: {
+						'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+					},
+				  success: function( data, status, xhr ) {
+						console.log('success');
+						$('#my-activities').show();
+					},
+					error: function( xhr, status, error ) {
+						console.log('error');
+						alert('Uh oh! Looks like something broke.');
+					}
+				});
 	  	}
 			else {
 				console.log('not logged in');
