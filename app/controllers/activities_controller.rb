@@ -1,11 +1,11 @@
 class ActivitiesController < ApplicationController
   
-  #before_filter :authorize_user, :except => :show
+  before_filter :authorize_user, :except => :show
   before_filter :parse_with_field_to_json, :only => :create
   
   def index
     @activities_selected = 'action-selected'
-    @activities = Activity.desc( :when, :created_at ).limit( 3 ).all
+    @activities = Activity.where(:owner_id => session['user_id'] ).desc( :when, :created_at ).limit( 5 ).all
     @activity = Activity.new
   end
   
@@ -15,12 +15,13 @@ class ActivitiesController < ApplicationController
   
   def more
     offset = params[:offset].to_i
-    @activities = Activity.desc( :when, :created_at ).offset( offset ).limit( 3 ).all
+    @activities = Activity.where(:owner_id => session['user_id'] ).desc( :when, :created_at ).offset( offset ).limit( 5 ).all
     render :layout => nil
   end
   
   def create
     @activity = Activity.new( params[:activity] )
+    @activity.owner_id = session['user_id']
     
     if @activity.save
       @style = 'display: none;'
