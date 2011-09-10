@@ -13,4 +13,8 @@ class Activity
   field :fb_post_id,        type: String
   
   validates_presence_of :what, :when, :desc
+  
+  def self.for user_id, offset=0
+    where(:owner_id => user_id ).desc( :when, :created_at ).offset( offset ).limit( 5 ).all
+  end
 end

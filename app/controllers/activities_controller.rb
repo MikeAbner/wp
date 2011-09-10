@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   
   def index
     @activities_selected = 'action-selected'
-    @activities = Activity.where(:owner_id => session['user_id'] ).desc( :when, :created_at ).limit( 5 ).all
+    @activities = Activity.for( session['user_id'] )
     @activity = Activity.new
   end
   
@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
   
   def more
     offset = params[:offset].to_i
-    @activities = Activity.where(:owner_id => session['user_id'] ).desc( :when, :created_at ).offset( offset ).limit( 5 ).all
+    @activities = Activity.for( session['user_id'], offset )
     render :layout => nil
   end
   
