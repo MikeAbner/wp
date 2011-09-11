@@ -175,16 +175,8 @@ WP = {
 		chosenFriends = $('#chosen-friends').empty();
 		$.each( friends, function( i, val ) {
 			console.log(val)
-			friend = $('#friend-picker #' + val['id'])
-			html = "<div class='mini-profile'>";
-			html += "<div class='profile-pic left'>";
-			html += "<img src='" + friend.find('img').attr('src') + "'/>";
-			html += "</div>";
-			html += "<div class='profile-name right'>";
-			html += "<a href='#'>" + val['name'] + "</a>";
-			html += "</div>";
-			html += "<br style='clear:both;'/>";
-			html += "</div>";
+			friend = $('#friend-picker #' + val['id']);
+			html = "<a href='//www.facebook.com/" + val['id'] + "'>" + val['name'] + "</a>&nbsp;&nbsp;";
 			chosenFriends.append( html );
 			$('#activity_with').val( JSON.stringify( friends ) );
 		});

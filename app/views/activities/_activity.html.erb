@@ -1,46 +1,27 @@
 <article id='activity_<%= activity.id %>' class='activity' style='<%= @style %>'>
-  <var class='activity-id'>
-    <%= activity.id %>
-  </var>
+  <var class='activity-id'><%= activity.id -%></var>
   <div class='what'>
-    <div class='left'>
-      <%= activity.what %>
-    </div>
+    <div class='left'><%= activity.what -%></div>
     <div class='right'>
       <iframe src="http://www.facebook.com/plugins/like.php?app_id=113008035468847&amp;href=wanderphiles.com%2Factivity%2Fzxcv&amp;send=false&amp;layout=box_count&amp;width=50&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:60px;" allowTransparency="true"></iframe>
     </div>
     <br style='clear:both;'/>
   </div>
   <p class='details'>
-    <b>on</b>&nbsp;&nbsp;<%= activity.when.to_s( :short_month ) %>
-    <% unless activity.where.blank? %>
-      <br/><b>at</b>&nbsp;&nbsp;<%= activity.where %>
-    <% end %>
-    <% unless activity.in.blank? %>
-      <br/><b>in</b>&nbsp;&nbsp;<%= activity.in %>
-    <% end %>
+    <b>on</b>&nbsp;&nbsp;<%= activity.when.to_s( :short_month ) -%>
+    <%- unless activity.where.blank? -%>
+      <br/><b>at</b>&nbsp;&nbsp;<%= activity.where -%>
+    <%- end -%>
+    <%- unless activity.in.blank? -%>
+      <br/><b>in</b>&nbsp;&nbsp;<%= activity.in -%>
+    <%- end -%>
+    <%- unless activity.with.empty? -%>
+      <br/><b>with</b>&nbsp;&nbsp;
+      <%- activity.with.each_with_index do |friend, i| -%>
+        <a href='//www.facebook.com/<%= friend['id'] %>'><%= friend['name'] %></a><%- if i == activity.with.size - 2 -%> and <%- elsif i == activity.with.size - 1 -%><%- else -%>, <%- end -%>
+      <%- end -%>
+    <%- end -%>
   </p>
-  <% unless activity.with.empty? %>
-    <div class='with'>
-      <div class='with left'>
-        <b>with</b>
-      </div>
-      <div class='right'>
-        <% activity.with.each do |friend| %>
-          <div class='mini-profile'>
-            <div class='profile-pic left'>
-              <img src='//graph.facebook.com/<%= friend['id'] %>/picture' />
-            </div>
-            <div class='profile-name right'>
-              <a href='//www.facebook.com/<%= friend['id'] %>'><%= friend['name'] %></a>
-            </div>
-            <br style='clear:both;'/>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <br style='clear:both;'/>
-  <% end %>
   <%= simple_format( activity.desc, :class => 'description' ) %>
   <p class='actions'>
     Edit&nbsp;&nbsp;&nbsp;

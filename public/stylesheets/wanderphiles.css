@@ -1,7 +1,7 @@
 /* site wide */
-body { background: url(../images/blue-bg.jpg); }
+body { background: url(../images/blue-bg.jpg);}
 var { display: none; }
-#container{ width: 560px; margin: 0 auto; background-color: #eee; padding: 0px 0 0px 0; border: 8px solid rgba( 221, 221, 221, 0.1); }
+#container{ width: 560px; margin: 0 auto; background-color: #eee; padding: 0px 0 0px 0; border: 8px solid rgb( 221, 221, 221); border: 8px solid rgba( 221, 221, 221, .9); }
 /* rounded corners wide (top wide/bottom wide) */
 .rcw{ border-radius: 16px; }
 .rctw{ border-top-left-radius: 16px; border-top-right-radius: 16px; }
@@ -35,12 +35,10 @@ var { display: none; }
 .activity .what { width: 100%; margin: 25px 0 0 0; overflow: auto; }
 .activity .what .left { float: left; width: 89%; padding: 15px 0 0 0; font-size: 18pt; font-weight: bold; }
 .activity .what .right { float: right; margin: 0 10px 0 0; }
-#activities .details { margin: 0px 0 15px 10px; }
-#activities .with { margin: 4px 0 0px 5px; overflow: auto; }
-#activities .with .left { float: left; margin: 4px 5px 0 5px; }
-#activities .with .right { float: left; }
-#activities .with .left { float: left; margin: 4px 5px 0 5px; }
-#activities .with .right { float: left; }
+#activities .details { margin: 0px 0px 15px 10px; }
+#activities .with { margin: 0px 0 0px 5px; overflow: auto; }
+#activities .with .left { float: left; margin: 0px 5px 0 5px; }
+#activities .with .right { float: left; padding: 5px 0 0 0; }
 #activities .actions { margin: 10px 10px 0 10px; text-align: right; }
 
 #activities #new-activity{ display: none; }

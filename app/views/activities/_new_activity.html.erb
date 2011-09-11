@@ -18,10 +18,9 @@
       <%= f.text_field :in %>
     </p>
     <p>
-      <%= f.label :with %>&nbsp;&nbsp;&nbsp;<a href='#' id='open-friend-picker-btn'>Choose Friends</a><br/>
+      <%= f.label :with %>&nbsp;&nbsp;&nbsp;<span id='chosen-friends'></span>&nbsp;&nbsp;&nbsp;<a href='#' id='open-friend-picker-btn'>Choose Friends</a><br/>
       <%= f.hidden_field :with %>
     </p>
-    <div id='chosen-friends'></div>
     <p>
       <%= f.label :desc %><br/>
       <%= f.text_area :desc, :rows => 5, :cols => 55 %>
