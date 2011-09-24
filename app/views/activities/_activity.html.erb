@@ -1,22 +1,33 @@
 <article id='activity_<%= activity.id %>' class='activity' style='<%= @style %>'>
   <var class='activity-id'><%= activity.id -%></var>
-  <div class='what'>
-    <div class='left'><%= activity.what -%></div>
-    <div class='right'>
-      <iframe src="http://www.facebook.com/plugins/like.php?app_id=113008035468847&amp;href=wanderphiles.com%2Factivity%2Fzxcv&amp;send=false&amp;layout=box_count&amp;width=50&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:60px;" allowTransparency="true"></iframe>
+  <div class='activity-header'>
+    <div class='calendar'>
+      <span class="date">
+      	<span class="month">
+      		<%= short_month_name( activity.when.month ) %>
+      	</span>
+      	<span class="day">
+      		<%= activity.when.day %>
+      	</span>
+      </span>
+    </div>
+    <div class='what'>
+      <%= activity.what -%>
+    </div>
+    <div class='likes'>
+      <iframe src="http://www.facebook.com/plugins/like.php?app_id=113008035468847&href=wanderphiles.com%2Factivity%2Fzxcv&send=false&layout=button_count&width=50&show_faces=false&action=like&colorscheme=light&font&height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:60px;" allowTransparency="true"></iframe>
     </div>
     <br style='clear:both;'/>
   </div>
   <p class='details'>
-    <b>on</b>&nbsp;&nbsp;<%= activity.when.to_s( :short_month ) -%>
     <%- unless activity.where.blank? -%>
-      <br/><b>at</b>&nbsp;&nbsp;<%= activity.where -%>
+      <b>at</b>&nbsp;<%= activity.where -%>
     <%- end -%>
     <%- unless activity.in.blank? -%>
-      <br/><b>in</b>&nbsp;&nbsp;<%= activity.in -%>
+      <b>in</b>&nbsp;<%= activity.in -%>
     <%- end -%>
     <%- unless activity.with.empty? -%>
-      <br/><b>with</b>&nbsp;&nbsp;
+      <b>with</b>
       <%- activity.with.each_with_index do |friend, i| -%>
         <a href='//www.facebook.com/<%= friend['id'] %>'><%= friend['name'] %></a><%- if i == activity.with.size - 2 -%> and <%- elsif i == activity.with.size - 1 -%><%- else -%>, <%- end -%>
       <%- end -%>
@@ -27,5 +38,5 @@
     Edit&nbsp;&nbsp;&nbsp;
     <a href='#' class='delete-activity'>Delete</a>
   </p>
-  <p class='comments'><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="wanderphiles.com/activities/<%= activity.id %>" num_posts="5" width="500"></fb:comments></p>
+  <div class='comments'><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="wanderphiles.com/activities/<%= activity.id %>" num_posts="5" width="500"></fb:comments></div>
 </article>

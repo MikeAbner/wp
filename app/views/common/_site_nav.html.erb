@@ -1,0 +1,10 @@
+<% if show %>
+  <ul id="site-nav">
+<% else %>
+  <ul id="site-nav" class='hidden'>
+<% end %>
+  <li><%= link_to( 'activities', activities_path ) %></li>
+  <li>friends</li>
+  <li>about me</li>
+  <li>news</li>
+</ul>

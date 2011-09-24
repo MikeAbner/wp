@@ -1,0 +1,114 @@
+/* ----------------------------------
+--------        RESET      ----------
+---------------------------------- */
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+var { display: none; }
+
+/* The Wanderphiles! */
+
+body { font-family: "Lucida Grande", Lucida, Verdana, sans-serif; line-height: 20px; }
+
+.hidden { display: none; }
+
+#site-container { width: 500px; margin: 25px auto; }
+header { height: 75px; border-bottom: 1px solid black; }
+footer { border-top: 1px solid black; padding: 10px 0 10px 0; }
+nav { height: 25px; padding: 8px 0 0 0; border-bottom: 1px solid black; }
+nav p { width: 100%; text-align: center; }
+#site-nav { width: 100%; }
+#site-nav li { float: left; width: 125px; display: inline; text-decoration: none; text-align: center; }
+#site-nav a { text-decoration: none; }
+#content { padding: 10px 0 10px 0; }
+
+#fb-login { display: none; width: 100%; margin: 0 auto; }
+
+/* activities */
+
+#new-activity-btn { width: 100%; text-align: center; margin: 5px 0 20px 0; }
+#new-activity {  }
+.activity-header { }
+.calendar { float: left; }
+.what { float: left; width: 383px; padding-top: 5px; font-size: 16pt; font-weight: bold; }
+.likes { float: left; height: 40px; }
+.details { margin: 5px 0 20px 75px; }
+.description { margin: 0 0 20px 75px; }
+.actions { margin: 0 0 20px 0; text-align: right; }
+.comments { margin: 0 0 25px 0; border-bottom: 1px double black; }
+
+/* Calendar */
+.date
+{
+	font: 100%/1.6em "Lucida Grande", Lucida, Verdana, sans-serif;
+	float: left;
+	height: 52px;
+	width: 52px;
+	background: url(../images/date.png) no-repeat;
+	margin-right: 15px;
+	padding-top: 0px;
+	line-height: normal;
+}
+
+.date .month
+{
+	display: block;
+	text-align: center;
+	color: #FFF;
+	font-size: 11px;
+	padding-top: 4px;
+	text-transform: uppercase;
+}
+
+.date .day
+{
+	display: block;
+	text-align: center;
+	padding-top: 5px;
+	color: #222;
+	font-size: 18px;
+	font-weight: bold;
+}

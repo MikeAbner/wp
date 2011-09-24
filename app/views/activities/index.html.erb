@@ -1,11 +1,5 @@
-<header>
-  <%= render 'common/title_bar' %>
-  <%= render 'common/action_bar' %>
-</header>
 <section id='activities'>
-  <header>
-    <%= render 'menu_bar' %>
-  </header>
+  <div id='new-activity-btn'><a href='#'>New Activity</a></div>
   <%= render 'new_activity' %>
   <div id='activity-list'>
     <%= render 'activities' %>
@@ -14,8 +8,6 @@
     <a href='#' id='show-more'>More</a>
   </div>
 </section>
-<footer>
-</footer>
 <%= render 'common/facebook' %>
 <%= javascript_include_tag 'jquery.facebook.multifriend.select.min.js' %>
 <script type='text/javascript'>

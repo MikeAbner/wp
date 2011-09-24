@@ -16,7 +16,7 @@ WP = {
 					},
 				  success: function( data, status, xhr ) {
 						console.log('success');
-						$('#my-activities').show();
+						$('nav p').fadeOut( 500, function() { $('#site-nav').fadeIn( 750 ); } );
 					},
 					error: function( xhr, status, error ) {
 						console.log('error');
@@ -26,8 +26,23 @@ WP = {
 	  	}
 			else {
 				console.log('not logged in');
+				$('#site-nav').fadeOut( 500, function() { $('nav p').fadeIn( 750 ); } );
 				$('#fb-login').show();
 				WP.subscribeToLoginEvent();
+				$.ajax({
+			  	type: 'POST',
+				  url: '/logout',
+					headers: {
+						'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+					},
+				  success: function( data, status, xhr ) {
+						console.log('logged out successfully');
+					},
+					error: function( xhr, status, error ) {
+						console.log('unable to logout');
+						alert('Uh oh! Looks like something broke.');
+					}
+				});
 	  	}
 		});
 	},
@@ -43,8 +58,8 @@ WP = {
 					'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 				},
 			  success: function( data, status, xhr ) {
-					console.log('success');
-					window.location = '/activities';
+					$('#fb-login').hide();
+					$('nav p').fadeOut( 500, function() { $('#site-nav').fadeIn( 750 ); } );
 				},
 				error: function( xhr, status, error ) {
 					console.log('error');
@@ -77,7 +92,7 @@ WP = {
 		});
 		
 		// ADD ACTIVITY
-		$('#add-activity-btn').click(function() {
+		$('#new-activity-btn a').click(function() {
 			$('#new-activity').slideDown('slow', function() { $('#activity_what').focus(); } );
 			return false;
 		});

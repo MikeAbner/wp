@@ -1,18 +1,10 @@
-<header>
-  <%= render 'common/title_bar' %>
-</header>
 <section>
   <div id="fb-login">
     <fb:login-button perms="publish_stream">
       Login with Facebook
     </fb:login-button>
   </div>
-  <div id="my-activities">
-    <%= link_to 'My Activities', activities_path %>
-  </div>
 </section>
-<footer>
-</footer>
 <%= render 'common/facebook' %>
 <script type='text/javascript'>
   $(document).ready(function() {
