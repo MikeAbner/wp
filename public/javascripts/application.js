@@ -92,9 +92,14 @@ WP = {
 		});
 		
 		// ADD ACTIVITY
-		$('#new-activity-btn a').click(function() {
-			$('#new-activity').slideDown('slow', function() { $('#activity_what').focus(); } );
-			return false;
+		$("#new-activity-btn a").overlay({
+			mask: {
+				color: '#ccc',
+				loadSpeed: 200,
+				opacity: 0.9
+			},
+			closeOnClick: false,
+			top: 'center'
 		});
 		
 		// SAVE ACTIVITY
@@ -145,7 +150,7 @@ WP = {
 			return false;
 		});
 	},
-	
+
 	saveNewActivity: function() {
 		$.ajax({
 			type: 'POST',
@@ -169,7 +174,7 @@ WP = {
 		answer = confirm('Are you sure you want to cancel?');
 		
 		if (answer) {
-			$('#new-activity').slideUp('slow');
+			$("#new-activity-btn a").overlay().close();
 		}
 	
 		return false;

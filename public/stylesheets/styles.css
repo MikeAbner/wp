@@ -70,7 +70,7 @@ nav p { width: 100%; text-align: center; }
 /* activities */
 
 #new-activity-btn { width: 100%; text-align: center; margin: 5px 0 20px 0; }
-#new-activity {  }
+#new-activity { background-color: white; border: 8px solid gray; z-index: 900; }
 .activity-header { }
 .calendar { float: left; }
 .what { float: left; width: 383px; padding-top: 5px; font-size: 16pt; font-weight: bold; }
