@@ -24,6 +24,11 @@ class ActivitiesController < ApplicationController
     @activity.owner_id = session['user_id']
     
     if @activity.save
+      if @activity.fb_post?
+        id = FacebookService.post_activity_to_wall( @current_user, @activity )
+        @activity.fb_post_id = id
+        @activity.save
+      end
       @style = 'display: none;'
       render :partial => 'activity', :locals => { :activity => @activity }
     else
