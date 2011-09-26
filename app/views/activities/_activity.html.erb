@@ -1,12 +1,12 @@
 <article id='activity_<%= activity.id %>' class='activity' style='<%= @style %>'>
   <var class='activity-id'><%= activity.id -%></var>
   <div class='activity-header'>
-    <div class='calendar'>
-      <span class="date">
-      	<span class="month">
+    <div class='activity-date-container'>
+      <span class="activity-date">
+      	<span class="activity-month">
       		<%= short_month_name( activity.when.month ) %>
       	</span>
-      	<span class="day">
+      	<span class="activity-day">
       		<%= activity.when.day %>
       	</span>
       </span>

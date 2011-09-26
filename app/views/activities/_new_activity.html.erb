@@ -18,7 +18,7 @@
       <%= f.text_field :in %>
     </p>
     <p>
-      <%= f.label :with %>&nbsp;&nbsp;&nbsp;<span id='chosen-friends'></span>&nbsp;&nbsp;&nbsp;<a href='#' id='open-friend-picker-btn'>Choose Friends</a><br/>
+      <%= f.label :with %>&nbsp;&nbsp;&nbsp;<span id='chosen-friends'></span>&nbsp;&nbsp;&nbsp;<a href='#' id='open-friend-picker-btn' rel="#friend-picker-container">Choose Friends</a><br/>
       <%= f.hidden_field :with %>
     </p>
     <p>
@@ -34,9 +34,10 @@
       <a href='#' id='cancel-btn'>Cancel</a>
     </p>
   <% end %>
-  <div id='friend-picker-container' class='rcw'>
-    <div id="friend-picker"></div>
-    <a href='#' id='choose-friends-btn'>Ok</a>
-    <a href='#' id='cancel-friends-btn'>Cancel</a>
-  </div>
+</div>
+
+<div id='friend-picker-container'>
+  <div id="friend-picker"></div>
+  <a href='#' id='choose-friends-btn'>Ok</a>
+  <a href='#' id='cancel-friends-btn'>Cancel</a>
 </div>

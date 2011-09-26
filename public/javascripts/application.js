@@ -92,14 +92,8 @@ WP = {
 		});
 		
 		// ADD ACTIVITY
-		$("#new-activity-btn a").overlay({
-			mask: {
-				color: '#ccc',
-				loadSpeed: 200,
-				opacity: 0.9
-			},
-			closeOnClick: false,
-			top: 'center'
+		$("#new-activity-btn a").click( function() {
+			$('#new-activity').slideDown( 750 );
 		});
 		
 		// SAVE ACTIVITY
@@ -115,26 +109,34 @@ WP = {
 		});
 		
 		//OPEN FRIEND PICKER
-		$('#open-friend-picker-btn').click(function() {
-			$('#friend-picker-container').show();
-			$('#friend-picker').jfmfs({
-				pre_selected_friends: $('#activity_with').val().split(',')
-			});
-			$("#friend-picker").bind("jfmfs.selection.changed", function(e, data) { 
-				WP.drawFriends( data );
-			});
-			return false;
+		
+		$('#open-friend-picker-btn').overlay({
+			mask: {
+				color: '#191919',
+				loadSpeed: 200,
+				opacity: 0.9
+			},
+			closeOnClick: false,
+			top: '15%',
+			onLoad: function() {
+				$('#friend-picker').jfmfs({
+					pre_selected_friends: $('#activity_with').val().split(',')
+				});
+				$("#friend-picker").bind("jfmfs.selection.changed", function(e, data) { 
+					WP.drawFriends( data );
+				});	
+			}
 		});
 		
 		//CHOOSE FRIENDS
 		$('#choose-friends-btn').live('click', function() {
-			WP.chooseFriends();
+			$('#open-friend-picker-btn').overlay().close();
 			return false;
 		});
 		
 		//CANCEL FRIENDS
 		$('#cancel-friends-btn').live('click', function() {
-			$('#friend-picker-container').hide();
+			$('#open-friend-picker-btn').overlay().close();
 			return false;
 		});
 		
@@ -174,7 +176,7 @@ WP = {
 		answer = confirm('Are you sure you want to cancel?');
 		
 		if (answer) {
-			$("#new-activity-btn a").overlay().close();
+
 		}
 	
 		return false;
