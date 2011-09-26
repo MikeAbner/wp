@@ -33,10 +33,15 @@ class ActivitiesController < ApplicationController
   
   def destroy
     @activity = Activity.find( params[:id] )
-    if @activity.destroy
-      render :json => { :status => :ok }, :status => :ok
+
+    if @activity.owner_id == session['user_id']
+      if @activity.destroy
+        render :json => { :status => :ok }, :status => :ok
+      else
+        render :json => { :status => :unprocessable_entity }, :status => :unprocessable_entity
+      end
     else
-      render :json => { :status => :unprocessable_entity }, :status => :unprocessable_entity
+      render :json => { :status => :forbidden }, :status => :forbidden
     end
 
   end
