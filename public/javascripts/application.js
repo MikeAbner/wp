@@ -176,7 +176,7 @@ WP = {
 		answer = confirm('Are you sure you want to cancel?');
 		
 		if (answer) {
-
+			$('#new-activity').slideUp( 750 );
 		}
 	
 		return false;
