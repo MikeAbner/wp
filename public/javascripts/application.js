@@ -2,7 +2,7 @@ WP = {
 	
 	initHomePage: function() {
 		console.log('initHomePage');
-		
+		$('#fb-login').show();
 		FB.getLoginStatus(function(response) {
 			console.log('getLoginStatus');
 	  	if ( response.session ) {

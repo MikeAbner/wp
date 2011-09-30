@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     fbid  = params[:uid]
     at    = params[:access_token]
     user  = UserService.find_or_create_by_facebook_id( fbid, at )
-    user = JSON.parse( user )
+    user  = JSON.parse( user )
     UserService.login!( user['_id'] )
     
     if user['_id']
@@ -12,6 +12,23 @@ class SessionsController < ApplicationController
     else
       session['user_id'] = nil
       render :json => { :status => :unprocessable_entity }, :status => :unprocessable_entity
+    end
+  end
+
+  def fb_create
+    auth  = request.env["omniauth.auth"]
+    fbid  = auth['uid']
+    at    = auth['credentials']['token']
+    user  = UserService.find_or_create_by_facebook_id( fbid, at )
+    user  = JSON.parse( user )
+    UserService.login!( user['_id'] )
+    
+    if user['_id']
+      session['user_id'] = user['_id']
+      redirect_to activities_path
+    else
+      session['user_id'] = nil
+      redirect_to root_path
     end
   end
   
