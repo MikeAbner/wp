@@ -16,6 +16,7 @@ WP = {
 		console.log('initHomePage');
 		$('#fb-login').show();
 		WP.Facebook.afterFbInit( function() {
+			console.log('facebook should be inited now');
 			FB.getLoginStatus(function(response) {
 				console.log('getLoginStatus');
 		  	if ( response.session ) {
@@ -89,6 +90,7 @@ WP = {
 	initActivitiesPage: function() {
 
 		WP.Facebook.afterFbInit( function() {
+			console.log('facebook should be inited now');
 			FB.getLoginStatus(function(response) {
 				console.log('getLoginStatus');
 		  	if ( response.session ) {
