@@ -1,49 +1,63 @@
 WP = {
 	
+	Facebook: {
+		afterFbInit: function(callback) {
+			if(!window.fbApiInit) {
+				setTimeout(function() { WP.Facebook.afterFbInit(callback); }, 50);
+			} else {
+				if(callback) {
+					callback();
+				}
+			}
+		},
+	},
+	
 	initHomePage: function() {
 		console.log('initHomePage');
 		$('#fb-login').show();
-		FB.getLoginStatus(function(response) {
-			console.log('getLoginStatus');
-	  	if ( response.session ) {
-				console.log('logged in');
-				$.ajax({
-			  	type: 'POST',
-				  url: '/login',
-				  data: 'uid=' + response.session.uid + '&access_token=' + response.session.access_token,
-					headers: {
-						'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-					},
-				  success: function( data, status, xhr ) {
-						console.log('success');
-						$('nav p').fadeOut( 500, function() { $('#site-nav').fadeIn( 750 ); } );
-					},
-					error: function( xhr, status, error ) {
-						console.log('error');
-						alert('Uh oh! Looks like something broke.');
-					}
-				});
-	  	}
-			else {
-				console.log('not logged in');
-				$('#site-nav').fadeOut( 500, function() { $('nav p').fadeIn( 750 ); } );
-				$('#fb-login').show();
-				WP.subscribeToLoginEvent();
-				$.ajax({
-			  	type: 'POST',
-				  url: '/logout',
-					headers: {
-						'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-					},
-				  success: function( data, status, xhr ) {
-						console.log('logged out successfully');
-					},
-					error: function( xhr, status, error ) {
-						console.log('unable to logout');
-						alert('Uh oh! Looks like something broke.');
-					}
-				});
-	  	}
+		WP.Facebook.afterFbInit( function() {
+			FB.getLoginStatus(function(response) {
+				console.log('getLoginStatus');
+		  	if ( response.session ) {
+					console.log('logged in');
+					$.ajax({
+				  	type: 'POST',
+					  url: '/login',
+					  data: 'uid=' + response.session.uid + '&access_token=' + response.session.access_token,
+						headers: {
+							'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+						},
+					  success: function( data, status, xhr ) {
+							console.log('success');
+							$('nav p').fadeOut( 500, function() { $('#site-nav').fadeIn( 750 ); } );
+						},
+						error: function( xhr, status, error ) {
+							console.log('error');
+							alert('Uh oh! Looks like something broke.');
+						}
+					});
+		  	}
+				else {
+					console.log('not logged in');
+					$('#site-nav').fadeOut( 500, function() { $('nav p').fadeIn( 750 ); } );
+					$('#fb-login').show();
+					WP.subscribeToLoginEvent();
+					$.ajax({
+				  	type: 'POST',
+					  url: '/logout',
+						headers: {
+							'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+						},
+					  success: function( data, status, xhr ) {
+							console.log('logged out successfully');
+						},
+						error: function( xhr, status, error ) {
+							console.log('unable to logout');
+							alert('Uh oh! Looks like something broke.');
+						}
+					});
+		  	}
+			});
 		});
 	},
 	
@@ -73,15 +87,18 @@ WP = {
 	},
 	
 	initActivitiesPage: function() {
-		FB.getLoginStatus(function(response) {
-			console.log('getLoginStatus');
-	  	if ( response.session ) {
-				//logged in
-	  	}
-			else {
-				console.log('not logged in');
-				window.location = '/';
-	  	}
+
+		WP.Facebook.afterFbInit( function() {
+			FB.getLoginStatus(function(response) {
+				console.log('getLoginStatus');
+		  	if ( response.session ) {
+					//logged in
+		  	}
+				else {
+					console.log('not logged in');
+					window.location = '/';
+		  	}
+			});
 		});
 		
 		$("#when").dateinput({
@@ -109,23 +126,24 @@ WP = {
 		});
 		
 		//OPEN FRIEND PICKER
-		
-		$('#open-friend-picker-btn').overlay({
-			mask: {
-				color: '#191919',
-				loadSpeed: 200,
-				opacity: 0.9
-			},
-			closeOnClick: false,
-			top: '15%',
-			onLoad: function() {
-				$('#friend-picker').jfmfs({
-					pre_selected_friends: $('#activity_with').val().split(',')
-				});
-				$("#friend-picker").bind("jfmfs.selection.changed", function(e, data) { 
-					WP.drawFriends( data );
-				});	
-			}
+		WP.Facebook.afterFbInit( function() {
+			$('#open-friend-picker-btn').overlay({
+				mask: {
+					color: '#191919',
+					loadSpeed: 200,
+					opacity: 0.9
+				},
+				closeOnClick: false,
+				top: '15%',
+				onLoad: function() {
+					$('#friend-picker').jfmfs({
+						pre_selected_friends: $('#activity_with').val().split(',')
+					});
+					$("#friend-picker").bind("jfmfs.selection.changed", function(e, data) { 
+						WP.drawFriends( data );
+					});
+				}
+			});
 		});
 		
 		//CHOOSE FRIENDS
