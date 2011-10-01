@@ -39,7 +39,9 @@
         <%= yield %>
       </div>
       <footer>
-
+        <% if session['user_id'] %>
+          <%= link_to 'logout', logout_path %>
+        <% end %>
       </footer>
     </div>
   </body>
