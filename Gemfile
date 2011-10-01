@@ -7,6 +7,8 @@ gem 'fb_graph'
 gem "omniauth", "0.3.0"
 gem 'awesome_print'
 
+gem 'heroku'
+
 group :development do
 
 end

@@ -4,7 +4,7 @@ class FacebookService
     post = fb_user.feed!(
       :message => "I just added the activity '#{activity.what}' to The Wanderphiles!",
       #:picture => 'https://graph.facebook.com/matake/picture',
-      :link => "http://www.wanderphiles.com/activities/#{activity.id}",
+      :link => "http://twp.heroku.com/activities/#{activity.id}",
       :name => 'The Wanderphiles',
       :description => 'The Wanderphiles is the place to record and share the things you do'
     )
