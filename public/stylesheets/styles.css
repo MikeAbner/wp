@@ -67,7 +67,7 @@ nav p { width: 100%; text-align: center; }
 #site-nav a { text-decoration: none; }
 #content { padding: 0px 0 0px 0; }
 
-#fb-login { display: none; width: 100%; margin: 10px auto 0 auto; }
+#fb-login { display: none; width: 100%; margin: 10px auto 0 auto; text-align: center; }
 
 #intro { margin: 25px 25px 25px 25px; text-align: center; }
 #intro li { padding: 10px 0 10px 0; }
