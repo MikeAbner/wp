@@ -99,6 +99,25 @@ WP = {
 					window.location = '/';
 		  	}
 			});
+			
+			//OPEN FRIEND PICKER
+			$('#open-friend-picker-btn').overlay({
+				mask: {
+					color: '#191919',
+					loadSpeed: 200,
+					opacity: 0.9
+				},
+				closeOnClick: false,
+				top: '15%',
+				onLoad: function() {
+					$('#friend-picker').jfmfs({
+						pre_selected_friends: $('#activity_with').val().split(',')
+					});
+					$("#friend-picker").bind("jfmfs.selection.changed", function(e, data) { 
+						WP.drawFriends( data );
+					});
+				}
+			});
 		});
 		
 		$("#when").dateinput({
@@ -123,27 +142,6 @@ WP = {
 		$('#cancel-btn').click(function() {
 			WP.cancelNewActivity();
 			return false;
-		});
-		
-		//OPEN FRIEND PICKER
-		WP.Facebook.afterFbInit( function() {
-			$('#open-friend-picker-btn').overlay({
-				mask: {
-					color: '#191919',
-					loadSpeed: 200,
-					opacity: 0.9
-				},
-				closeOnClick: false,
-				top: '15%',
-				onLoad: function() {
-					$('#friend-picker').jfmfs({
-						pre_selected_friends: $('#activity_with').val().split(',')
-					});
-					$("#friend-picker").bind("jfmfs.selection.changed", function(e, data) { 
-						WP.drawFriends( data );
-					});
-				}
-			});
 		});
 		
 		//CHOOSE FRIENDS
