@@ -28,7 +28,11 @@
     <%- end -%>
     <%- unless activity.with.empty? -%>
       <b>with</b>
+      <%- if activity.owner_id != @current_user['_id'] -%>
+        <a href='//www.facebook.com/<%= activity.owner['fb_id'] %>'><%= "#{ activity.owner['first_name'] } #{ activity.owner['last_name'] }" %></a><%- if activity.with.size == 2 -%> and <%- elsif activity.with.size > 2 -%>, <%- end -%>
+      <%- end -%>
       <%- activity.with.each_with_index do |friend, i| -%>
+        <%- next if friend['id'] == @current_user['fb_id'] -%>
         <a href='//www.facebook.com/<%= friend['id'] %>'><%= friend['name'] %></a><%- if i == activity.with.size - 2 -%> and <%- elsif i == activity.with.size - 1 -%><%- else -%>, <%- end -%>
       <%- end -%>
     <%- end -%>
