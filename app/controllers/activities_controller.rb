@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   
   def index
     @activities_selected = 'action-selected'
-    @activities = Activity.for( session['user_id'] )
+    @activities = Activity.for( @current_user )
     @activity = Activity.new
   end
   
@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
   
   def more
     offset = params[:offset].to_i
-    @activities = Activity.for( session['user_id'], offset )
+    @activities = Activity.for( @current_user, offset )
     render :layout => nil
   end
   

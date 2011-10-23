@@ -14,7 +14,7 @@ class Activity
   
   validates_presence_of :what, :when, :desc
   
-  def self.for user_id, offset=0
-    where(:owner_id => user_id ).desc( :when, :created_at ).offset( offset ).limit( 5 ).all
+  def self.for user, offset=0
+    any_of( { owner_id: user['_id'] }, { 'with.in' => user['fb_id'] } ).desc( :when, :created_at ).offset( offset ).limit( 5 ).all
   end
 end
