@@ -13,6 +13,10 @@
     </div>
     <div class='what'>
       <%= activity.what -%>
+      <%- if activity.owner_id != @current_user['_id'] -%>
+        <br/>
+        <span class='by'><b>by</b> <a href='//www.facebook.com/<%= activity.owner['fb_id'] %>'><%= "#{ activity.owner['first_name'] } #{ activity.owner['last_name'] }" %></a><%- if activity.with.size == 2 -%> and <%- elsif activity.with.size > 2 -%>, <%- end -%></span>
+      <%- end -%>
     </div>
     <div class='likes'>
       <iframe src="http://www.facebook.com/plugins/like.php?app_id=113008035468847&href=www.wanderphiles.com%2Factivity%2Fzxcv&send=false&layout=button_count&width=50&show_faces=false&action=like&colorscheme=light&font&height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:60px;" allowTransparency="true"></iframe>

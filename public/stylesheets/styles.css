@@ -80,6 +80,7 @@ nav p { width: 100%; text-align: center; }
 .activity-header { }
 .activity-date-container { float: left; }
 .what { float: left; width: 383px; padding-top: 5px; font-size: 16pt; font-weight: bold; }
+.what .by { font-size: 10pt; }
 .likes { float: left; height: 40px; }
 .details { margin: 5px 0 20px 75px; }
 .description { margin: 0 0 20px 75px; }
