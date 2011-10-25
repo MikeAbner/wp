@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   def load_user
     if session['user_id']
       @current_user = JSON.parse( UserService.find( session['user_id'] ) )
+    else
+      @current_user = {}
     end
   rescue
     session['user_id'] = nil
